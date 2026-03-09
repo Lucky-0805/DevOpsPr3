@@ -1,51 +1,14 @@
-pipeline (
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-agent any
+    <modelVersion>4.0.0</modelVersion>
 
-tools {
+    <groupId>com.demo</groupId>
+    <artifactId>demo-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-}
+    <name>Demo Maven Project</name>
 
-maven "MAVEN"
-
-jdk "JDK"
-
-stages {
-
-stage('Initialize'){
-
-steps{
-
-}
-
-}
-
-echo "PATH = ${M2_HOME}/bin:${PATH}"
-
-echo "M2_HOME=/opt/maven"
-
-stage('Build') {
-
-steps {
-
-}
-
-dir("/var/lib/jenkins/workspace/demopipelinetask/my-app") { sh 'mvn -B-DskipTests clean package' }
-
-}
-
-}
-
-}
-
-}
-
-post {
-
-always {
-
-junit(
-
-allowEmptyResults: true,
-
-testResults: */test-reports/.xml'
+</project>
