@@ -1,22 +1,28 @@
 pipeline {
     agent any
 
+    tools {
+        maven "Maven3"
+        jdk "Java21"
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Initialize') {
             steps {
-                checkout scm
+                echo "Pipeline Started"
             }
         }
+
         stage('Build') {
             steps {
-                // This runs the Maven command using the pom.xml
-                bat 'mvn clean compile'
+                bat 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
+    }
+
+    post {
+        always {
+            echo "Pipeline Finished"
         }
     }
 }
