@@ -2,27 +2,20 @@ pipeline {
     agent any
 
     tools {
-        maven "Maven3"
-        jdk "Java21"
+        maven 'Maven'
     }
 
     stages {
-        stage('Initialize') {
+        stage('Clone') {
             steps {
-                echo "Pipeline Started"
+                git 'https://github.com/your-repo.git'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn -B -DskipTests clean package'
+                sh 'mvn clean install'
             }
-        }
-    }
-
-    post {
-        always {
-            echo "Pipeline Finished"
         }
     }
 }
