@@ -1,14 +1,21 @@
 pipeline {
     agent any
-    
-    tools {
-        maven 'Maven3'
-    }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
-                bat 'mvn clean package'
+                // This runs the Maven command using the pom.xml
+                bat 'mvn clean compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
             }
         }
     }
