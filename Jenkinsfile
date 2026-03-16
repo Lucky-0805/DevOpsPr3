@@ -1,20 +1,14 @@
 pipeline {
     agent any
-
+    
     tools {
-        maven 'Maven'
+        maven 'Maven3'
     }
 
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/your-repo.git'
-            }
-        }
-
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'mvn clean package'
             }
         }
     }
